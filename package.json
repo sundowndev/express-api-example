@@ -1,0 +1,32 @@
+{
+  "name": "api-js-mooc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.11"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.7"
+  },
+  "apidoc": {
+    "title": "Mooc API"
+  },
+  "scripts": {
+    "doc":"apidoc -i ./app/routes",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sundowndev/api-js-mooc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sundowndev/api-js-mooc/issues"
+  },
+  "homepage": "https://github.com/sundowndev/api-js-mooc#readme"
+}
