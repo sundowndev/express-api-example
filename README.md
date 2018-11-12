@@ -15,6 +15,7 @@ RESTful API based on Expressjs.
 
 - User: firstname, lastname, email, password
 - Note: title, text, author
+- Auth: jwt_token, expiration_date
 
 ## Specs
 
@@ -32,6 +33,9 @@ RESTful API based on Expressjs.
 - PUT /user/me (si tu vois password et new password, ou mets une autre route si tu veux) (200 ok avec le user après édition mais sans mot de passe bien sûr)
 - DELETE /users/me (supprimer le profil) (204 no content, car le user est supprimé et tu ne me renvoi rien)
 - GET /users/me (renvoi le user) (200 ok avec en body le user) pouvoir gérer les notes (connecté)
+
+**Notes:**
+
 - POST /notes (title optionnel, text optionnel, lié a user connecté) (201 creatred)
 - PUT /notes/id (title optionnel, text optionnel) (200 ok avec en body la noté modifiée)
 - DELETE /notes/id (supprimer la note) (204 no content)
