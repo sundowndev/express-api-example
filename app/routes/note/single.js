@@ -1,5 +1,5 @@
 module.exports = (req, res) => {
-  const user = req.model;
+  const note = req.model;
 
-  res.status(200).json({ user });
+  res.status(200).json({ note });
 };

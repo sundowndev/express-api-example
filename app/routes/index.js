@@ -2,6 +2,7 @@ const routes = require('express').Router();
 const bodyParser = require('body-parser');
 
 // Require routes
+const auth = require('./auth');
 const user = require('./user');
 const note = require('./note');
 
@@ -12,7 +13,7 @@ routes.use(bodyParser.json());
 
 routes.use((req, res, next) => {
     // do logging
-    console.log('Something is happening.');
+    console.log(`Resource requested: ${req.method} ${req.originalUrl}`);
     next(); // make sure we go to the next routes and don't stop here
 });
 
@@ -20,6 +21,7 @@ routes.get('/', (req, res) => {
   res.status(200).json({ message: 'Hello world!' });
 });
 
+routes.use('/auth', auth);
 routes.use('/user', user);
 routes.use('/note', note);
 
