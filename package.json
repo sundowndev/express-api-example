@@ -12,14 +12,20 @@
     "passport": "^0.4.0"
   },
   "devDependencies": {
-    "apidoc": "^0.17.7"
+    "apidoc": "^0.17.7",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1"
   },
   "apidoc": {
     "title": "Mooc API"
   },
   "scripts": {
     "doc": "apidoc -i ./app/routes -o ./docs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint ./"
   },
   "repository": {
     "type": "git",
