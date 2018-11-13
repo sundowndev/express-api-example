@@ -3,9 +3,9 @@ const user = require('express').Router();
 const all = require('./all');
 const profile = require('./profile');
 const single = require('./single');
-const create = require('./create');
-const update = require('./update');
-const remove = require('./delete');
+// const create = require('./create');
+// const update = require('./update');
+// const remove = require('./delete');
 
 /**
  * @api {get} /user Request all Users information
@@ -62,9 +62,9 @@ user.put('/me', profile);
  * @apiParam {String} lastname  Lastname of the User.
  * @apiParam {String} username  Username of the User.
  */
- user.delete('/me', profile);
+user.delete('/me', profile);
 
- /**
+/**
   * @api {get} /user/me/notes Get notes created by this account
   * @apiName GetNotes
   * @apiGroup User,Note
@@ -72,10 +72,10 @@ user.put('/me', profile);
   * @apiSuccess {string} title Title of the note.
   * @apiSuccess {string} text Text of the note.
   */
- user.get('/me/notes', profile);
+user.get('/me/notes', profile);
 
-//user.post('/', create)
-//user.put('/:userId', update)
-//user.delete('/:userId', remove)
+// user.post('/', create)
+// user.put('/:userId', update)
+// user.delete('/:userId', remove)
 
 module.exports = user;

@@ -1,5 +1,11 @@
-module.exports = (req, res) => {
-  const users = [];
+const mongoose = require('mongoose');
 
-  res.status(200).json({ users });
+module.exports = (req, res) => {
+  const UserModel = mongoose.model('User');
+  const users = UserModel.find()
+    .lean()
+    .exec()
+    .then(() => {
+      res.status(200).json(users);
+    });
 };
