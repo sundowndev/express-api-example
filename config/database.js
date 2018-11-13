@@ -1,4 +1,4 @@
 module.exports = {
-  'secret':'admin',
-  'database': 'mongodb://localhost/mooc-api'
+  secret: 'admin',
+  database: 'mongodb://localhost/mooc-api',
 };
