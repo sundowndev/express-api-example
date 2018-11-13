@@ -7,6 +7,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "joi": "^14.0.6",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.3.11",
     "passport": "^0.4.0"
