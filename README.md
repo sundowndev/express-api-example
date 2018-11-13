@@ -1,6 +1,6 @@
 # API node
 
-RESTful API based on Expressjs.
+RESTful API based on Expressjs. <a href="https://travis-ci.org/sundowndev/api-js-mooc"><img src="https://api.travis-ci.org/sundowndev/api-js-mooc.svg?branch=master" alt="Build status"></a>
 
 ## Overview
 
