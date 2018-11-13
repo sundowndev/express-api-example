@@ -25,10 +25,10 @@ auth.post('/register', register);
  * @apiParam {String} username username of the user.
  * @apiParam {String} password password of the user.
  *
- * @apiSuccess {string} jwt JWT token.
+ * @apiSuccess {string} jwt_token JWT token.
  */
 auth.post('/login', login);
 
-//note.post('/rester-password', reset)
+// note.post('/rester-password', reset)
 
 module.exports = auth;
