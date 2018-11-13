@@ -1,9 +1,14 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var NoteSchema   = new Schema({
-    title: String,
-    text: String
-});
+const { Schema } = mongoose;
 
-module.exports = mongoose.model('Note', NoteSchema);
+const NoteSchema = new Schema({
+  title: {
+    type: String, required: [true, "can't be blank"],
+  },
+  text: {
+    type: String, required: [true, "can't be blank"],
+  },
+}, { timestamps: true });
+
+module.exports = NoteSchema;
