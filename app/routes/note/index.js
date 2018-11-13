@@ -34,17 +34,26 @@ note.get('/:id', single);
  *
  * @apiSuccess {Object} Object Created note.
  */
-note.post('/', all);
+note.post('/', create);
 
 /**
  * @api {delete} /note/:id Delete a note
  * @apiName DeleteNote
  * @apiGroup Note
+ *
+ * @apiParam {Number} id Note id.
  */
-note.delete('/:id', all);
+note.delete('/:id', remove);
 
-//note.post('/', create)
-//note.put('/:noteId', update)
-//note.delete('/:noteId', remove)
+/**
+ * @api {put} /note/:id Update a note
+ * @apiName UpdateNote
+ * @apiGroup Note
+ *
+ * @apiParam {Number} id Note id.
+ *
+ * @apiSuccess {Object} Object Updated note.
+ */
+note.put('/:id', update);
 
 module.exports = note;

@@ -1,5 +1,12 @@
-module.exports = (req, res) => {
-  const notes = [];
+const mongoose = require('mongoose');
 
-  res.status(200).json({ notes });
+module.exports = (req, res) => {
+  const NoteModel = mongoose.model('Note');
+
+  NoteModel.find({})
+    .lean()
+    .exec()
+    .then((result) => {
+      res.status(200).json(result);
+    });
 };
