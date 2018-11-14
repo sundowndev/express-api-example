@@ -1,11 +1,20 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var UserSchema   = new Schema({
-    firstname: String,
-    lastname: String,
-    username: String,
-    password: String
-});
+const { Schema } = mongoose;
 
-module.exports = mongoose.model('User', UserSchema);
+const UserSchema = new Schema({
+  firstname: {
+    type: String, required: [true, "can't be blank"],
+  },
+  lastname: {
+    type: String, required: [true, "can't be blank"],
+  },
+  username: {
+    type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true,
+  },
+  password: {
+    type: String, required: [true, "can't be blank"],
+  },
+}, { timestamps: true });
+
+module.exports = UserSchema;
