@@ -2,7 +2,7 @@
   {
     "type": "post",
     "url": "/auth/login",
-    "title": "Request JWT token",
+    "title": "Get access token",
     "name": "Login",
     "group": "Auth",
     "parameter": {
@@ -32,7 +32,7 @@
             "group": "Success 200",
             "type": "string",
             "optional": false,
-            "field": "jwt",
+            "field": "jwt_token",
             "description": "<p>JWT token.</p>"
           }
         ]
@@ -125,28 +125,18 @@
   {
     "type": "delete",
     "url": "/note/:id",
-    "title": "Delete a note",
+    "title": "Delete note",
     "name": "DeleteNote",
     "group": "Note",
-    "version": "0.0.0",
-    "filename": "app/routes/note/index.js",
-    "groupTitle": "Note"
-  },
-  {
-    "type": "get",
-    "url": "/note",
-    "title": "Request all notes",
-    "name": "GetNotes",
-    "group": "Note",
-    "success": {
+    "parameter": {
       "fields": {
-        "Success 200": [
+        "Parameter": [
           {
-            "group": "Success 200",
-            "type": "Array",
+            "group": "Parameter",
+            "type": "String",
             "optional": false,
-            "field": "Array",
-            "description": "<p>Array of Note objects.</p>"
+            "field": "id",
+            "description": "<p>Note unique ID.</p>"
           }
         ]
       }
@@ -158,7 +148,7 @@
   {
     "type": "get",
     "url": "/note/:id",
-    "title": "Request Note information",
+    "title": "Get note",
     "name": "GetNotes",
     "group": "Note",
     "parameter": {
@@ -166,10 +156,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "String",
             "optional": false,
             "field": "id",
-            "description": "<p>Notes unique ID.</p>"
+            "description": "<p>Note unique ID.</p>"
           }
         ]
       }
@@ -199,88 +189,47 @@
     "groupTitle": "Note"
   },
   {
+    "type": "put",
+    "url": "/note/:id",
+    "title": "Update note",
+    "name": "UpdateNote",
+    "group": "Note",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Note unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Object",
+            "description": "<p>Updated note.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/note/index.js",
+    "groupTitle": "Note"
+  },
+  {
     "type": "delete",
     "url": "/user/me",
-    "title": "Delete current account",
+    "title": "Delete account",
     "name": "DeleteUser",
     "group": "User",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "firstname",
-            "description": "<p>Firstname of the User.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "lastname",
-            "description": "<p>Lastname of the User.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "username",
-            "description": "<p>Username of the User.</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/routes/user/index.js",
-    "groupTitle": "User"
-  },
-  {
-    "type": "get",
-    "url": "/user/:id",
-    "title": "Request User information",
-    "name": "GetUser",
-    "group": "User",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Users unique ID.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "firstname",
-            "description": "<p>Firstname of the User.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "lastname",
-            "description": "<p>Lastname of the User.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "username",
-            "description": "<p>Username of the User.</p>"
-          }
-        ]
-      }
-    },
     "version": "0.0.0",
     "filename": "app/routes/user/index.js",
     "groupTitle": "User"
@@ -288,7 +237,7 @@
   {
     "type": "get",
     "url": "/user/me",
-    "title": "Request current account information",
+    "title": "Get user information",
     "name": "GetUser",
     "group": "User",
     "success": {
@@ -314,42 +263,6 @@
             "optional": false,
             "field": "username",
             "description": "<p>Username of the User.</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/routes/user/index.js",
-    "groupTitle": "User"
-  },
-  {
-    "type": "get",
-    "url": "/user",
-    "title": "Request all Users information",
-    "name": "GetUsers",
-    "group": "User",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Users unique ID.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Array",
-            "optional": false,
-            "field": "Array",
-            "description": "<p>User objects.</p>"
           }
         ]
       }
@@ -361,32 +274,18 @@
   {
     "type": "put",
     "url": "/user/me",
-    "title": "Update current account information",
+    "title": "Update account information",
     "name": "UpdateUser",
     "group": "User",
-    "parameter": {
+    "success": {
       "fields": {
-        "Parameter": [
+        "Success 200": [
           {
-            "group": "Parameter",
-            "type": "String",
+            "group": "Success 200",
+            "type": "Object",
             "optional": false,
-            "field": "firstname",
-            "description": "<p>Firstname of the User.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "lastname",
-            "description": "<p>Lastname of the User.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "username",
-            "description": "<p>Username of the User.</p>"
+            "field": "user",
+            "description": "<p>User object.</p>"
           }
         ]
       }
@@ -398,31 +297,24 @@
   {
     "type": "get",
     "url": "/user/me/notes",
-    "title": "Get notes created by this account",
-    "name": "GetNotes",
-    "group": "User_Note",
+    "title": "Get all notes",
+    "name": "GetNotesByUserId",
+    "group": "User_notes",
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "Array",
             "optional": false,
-            "field": "title",
-            "description": "<p>Title of the note.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "text",
-            "description": "<p>Text of the note.</p>"
+            "field": "Array",
+            "description": "<p>Notes of the user.</p>"
           }
         ]
       }
     },
     "version": "0.0.0",
     "filename": "app/routes/user/index.js",
-    "groupTitle": "User_Note"
+    "groupTitle": "User_notes"
   }
 ]
