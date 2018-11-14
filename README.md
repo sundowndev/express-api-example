@@ -2,20 +2,49 @@
 
 RESTful API based on Expressjs. <a href="https://travis-ci.org/sundowndev/api-js-mooc"><img src="https://api.travis-ci.org/sundowndev/api-js-mooc.svg?branch=master" alt="Build status"></a>
 
-## Overview
+WARNING: This is for demo purposes. You should not run this in production (no cors, unit tests ...).
 
-### Features
+## Features
 
-- Sign up
-- Sign in
-- CRUD notes
-- reset password (optional)
+- Sign up/sign in (JWT, bcrypt)
+- Create, update, delete, read your notes
+- Manage your account: update, delete
 
-### Models
+## Call the API
 
-- User: firstname, lastname, email, password
-- Note: title, text, author
-- Auth: jwt_token, expiration_date
+As best practice, use these headers to make requests to the API:
+
+```
+Content-Type:application/x-www-form-urlencoded
+Accept:application/json
+```
+
+## API response
+
+The response code will never be in the response.
+
+**Make operations** (create, update, delete ...)
+
+```js
+{
+    success: false,
+    message: 'Oups!'
+}
+```
+
+**Getting objects** (read)
+
+```js
+{
+    "_id": "5bec2fed257ab94172cd3874",
+    "firstname": "Raphael",
+    "lastname": "NA",
+    "username": "sundown",
+    "createdAt": "2018-11-14T14:23:41.581Z",
+    "updatedAt": "2018-11-14T14:23:41.581Z",
+    "__v": 0
+}
+```
 
 ## Specs
 
