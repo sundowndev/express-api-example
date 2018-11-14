@@ -3,6 +3,8 @@ const auth = require('express').Router();
 const register = require('./register');
 const login = require('./login');
 
+const UserSchema = require('../../schemas/user');
+
 /**
  * @api {post} /auth/register Register
  * @apiName Register
@@ -15,17 +17,17 @@ const login = require('./login');
  *
  * @apiSuccess {Array} Array Array of Note objects.
  */
-auth.post('/register', register);
+auth.post('/register', UserSchema, register);
 
 /**
- * @api {post} /auth/login Request JWT token
+ * @api {post} /auth/login Get access token
  * @apiName Login
  * @apiGroup Auth
  *
  * @apiParam {String} username username of the user.
  * @apiParam {String} password password of the user.
  *
- * @apiSuccess {string} jwt_token JWT token.
+ * @apiSuccess {string} access_token Access token.
  */
 auth.post('/login', login);
 
