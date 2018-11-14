@@ -1,15 +1,28 @@
 const mongoose = require('mongoose');
 
+// TODO: verify auth
+// TODO: verify owner
+
 module.exports = (req, res) => {
   const NoteModel = mongoose.model('Note');
 
-  NoteModel.find({ _id: req.params.id })
-    .lean()
-    .exec()
-    .then((result) => {
-      res.status(200).json(result);
-    })
-    .catch(() => {
-      res.status(404).json({ success: false, msg: 'Note does not exists.' });
-    });
+  NoteModel.findOneAndUpdate(
+    // the id of the item to find
+    { _id: req.params.id },
+
+    // the change to be made. Mongoose will smartly combine your existing
+    // document with this change, which allows for partial updates too
+    req.body,
+
+    // an option that asks mongoose to return the updated version
+    // of the document instead of the pre-updated one.
+    { new: true },
+
+    // the callback function
+    (err, note) => {
+    // Handle any possible database errors
+      if (err) return res.status(500).send(err);
+      return res.json(note);
+    },
+  );
 };
