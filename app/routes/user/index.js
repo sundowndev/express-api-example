@@ -1,38 +1,12 @@
 const user = require('express').Router();
 
-const all = require('./all');
 const profile = require('./profile');
-const single = require('./single');
-// const create = require('./create');
-// const update = require('./update');
-// const remove = require('./delete');
+const update = require('./update');
+const remove = require('./delete');
+// const notes = require('./notes');
 
 /**
- * @api {get} /user Request all Users information
- * @apiName GetUsers
- * @apiGroup User
- *
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {Array} Array User objects.
- */
-user.get('/', all);
-
-/**
- * @api {get} /user/:id Request User information
- * @apiName GetUser
- * @apiGroup User
- *
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {String} firstname Firstname of the User.
- * @apiSuccess {String} lastname  Lastname of the User.
- * @apiSuccess {String} username  Username of the User.
- */
-user.get('/:userId', single);
-
-/**
- * @api {get} /user/me Request current account information
+ * @api {get} /user/me Get user information
  * @apiName GetUser
  * @apiGroup User
  *
@@ -43,39 +17,28 @@ user.get('/:userId', single);
 user.get('/me', profile);
 
 /**
- * @api {put} /user/me Update current account information
- * @apiName UpdateUser
- * @apiGroup User
- *
- * @apiParam {String} firstname Firstname of the User.
- * @apiParam {String} lastname  Lastname of the User.
- * @apiParam {String} username  Username of the User.
- */
-user.put('/me', profile);
+  * @api {put} /user/me Update account information
+  * @apiName UpdateUser
+  * @apiGroup User
+  *
+  * @apiSuccess {Object} user User object.
+  */
+user.put('/me', update);
 
 /**
- * @api {delete} /user/me Delete current account
+ * @api {delete} /user/me Delete account
  * @apiName DeleteUser
  * @apiGroup User
- *
- * @apiParam {String} firstname Firstname of the User.
- * @apiParam {String} lastname  Lastname of the User.
- * @apiParam {String} username  Username of the User.
  */
-user.delete('/me', profile);
+user.delete('/me', remove);
 
 /**
-  * @api {get} /user/me/notes Get notes created by this account
-  * @apiName GetNotes
-  * @apiGroup User,Note
+  * @api {get} /user/me/notes Get all notes
+  * @apiName GetNotesByUserId
+  * @apiGroup User notes
   *
-  * @apiSuccess {string} title Title of the note.
-  * @apiSuccess {string} text Text of the note.
+  * @apiSuccess {Array} Array Notes of the user.
   */
 user.get('/me/notes', profile);
-
-// user.post('/', create)
-// user.put('/:userId', update)
-// user.delete('/:userId', remove)
 
 module.exports = user;
