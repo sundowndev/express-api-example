@@ -25,8 +25,8 @@
     "title": "Mooc API"
   },
   "scripts": {
-    "doc": "apidoc -i ./app/routes -o ./docs",
-    "test": "eslint ./"
+    "docs": "apidoc -i ./app/routes -o ./docs",
+    "test": "eslint ./ && npm run docs"
   },
   "repository": {
     "type": "git",
