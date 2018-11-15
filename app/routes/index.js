@@ -18,7 +18,7 @@ routes.use((req, res, next) => {
 });
 
 routes.get('/', (req, res) => {
-  res.status(200).json({ message: 'Hello world!' });
+  res.status(200).json({ success: true, message: 'Hello world!' });
 });
 
 routes.use('/auth', auth);
