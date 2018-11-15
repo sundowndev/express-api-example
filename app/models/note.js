@@ -9,6 +9,9 @@ const NoteSchema = new Schema({
   text: {
     type: String, required: [true, "can't be blank"],
   },
+  user: {
+    type: Schema.Types.ObjectId, ref: 'User',
+  },
 }, { timestamps: true });
 
 module.exports = NoteSchema;
