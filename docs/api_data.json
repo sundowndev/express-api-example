@@ -32,8 +32,8 @@
             "group": "Success 200",
             "type": "string",
             "optional": false,
-            "field": "jwt_token",
-            "description": "<p>JWT token.</p>"
+            "field": "access_token",
+            "description": "<p>Access token.</p>"
           }
         ]
       }
@@ -105,15 +105,31 @@
     "title": "Create note",
     "name": "CreateNote",
     "group": "Note",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"<Access_Token>\"\n}",
+          "type": "json"
+        }
+      ]
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "string",
             "optional": false,
-            "field": "Object",
-            "description": "<p>Created note.</p>"
+            "field": "title",
+            "description": "<p>Title of the note.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "text",
+            "description": "<p>Text of the note.</p>"
           }
         ]
       }
@@ -128,6 +144,24 @@
     "title": "Delete note",
     "name": "DeleteNote",
     "group": "Note",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"message\": \"Note successfully deleted.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 403 Not Found\n{\n  \"success\": false,\n  \"message\": \"Access forbidden.\",\n  \"errors\": []\n}",
+          "type": "json"
+        }
+      ]
+    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -212,10 +246,17 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "string",
             "optional": false,
-            "field": "Object",
-            "description": "<p>Updated note.</p>"
+            "field": "title",
+            "description": "<p>Title of the note.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "text",
+            "description": "<p>Text of the note.</p>"
           }
         ]
       }
@@ -261,8 +302,8 @@
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "username",
-            "description": "<p>Username of the User.</p>"
+            "field": "email",
+            "description": "<p>Email of the User.</p>"
           }
         ]
       }
