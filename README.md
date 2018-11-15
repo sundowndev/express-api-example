@@ -19,22 +19,43 @@ Content-Type:application/x-www-form-urlencoded
 Accept:application/json
 ```
 
+When signed in, you must provide the access token:
+
+```
+Authorization: Bearer <Access_token>
+```
+
 ## API response
 
 The response code will never be in the response.
 
 **Make operations** (create, update, delete ...)
 
-```js
+Validation error example:
+
+```json
 {
-    success: false,
-    message: 'Oups!'
+    "success": false,
+    "message": "Form is invalid.",
+    "errors": [
+        {
+            "message": "\"password\" is required",
+            "path": [
+                "password"
+            ],
+            "type": "any.required",
+            "context": {
+                "key": "password",
+                "label": "password"
+            }
+        }
+    ]
 }
 ```
 
 **Getting objects** (read)
 
-```js
+```json
 {
     "_id": "5bec2fed257ab94172cd3874",
     "firstname": "Raphael",
