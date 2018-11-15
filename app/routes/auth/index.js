@@ -2,8 +2,10 @@ const auth = require('express').Router();
 
 const register = require('./register');
 const login = require('./login');
+const reset = require('./reset');
 
-const UserSchema = require('../../schemas/user');
+const RegisterValidation = require.main.require('./app/validation/register');
+const LoginValidation = require.main.require('./app/validation/login');
 
 /**
  * @api {post} /auth/register Register
@@ -12,25 +14,33 @@ const UserSchema = require('../../schemas/user');
  *
  * @apiParam {String} firstname Firstname of the user.
  * @apiParam {String} lastname Lastname of the user.
- * @apiParam {String} username username of the user.
+ * @apiParam {String} email email of the user.
  * @apiParam {String} password password of the user.
  *
  * @apiSuccess {Array} Array Array of Note objects.
  */
-auth.post('/register', UserSchema, register);
+auth.post('/register', RegisterValidation, register);
 
 /**
  * @api {post} /auth/login Get access token
  * @apiName Login
  * @apiGroup Auth
  *
- * @apiParam {String} username username of the user.
+ * @apiParam {String} email email of the user.
  * @apiParam {String} password password of the user.
  *
  * @apiSuccess {string} access_token Access token.
  */
-auth.post('/login', login);
+auth.post('/login', LoginValidation, login);
 
-// note.post('/rester-password', reset)
+/**
+ * @api {post} /auth/reset-password Reset password
+ * @apiName ResetPass
+ * @apiGroup Auth
+ *
+ * @apiParam {String} email email of the user.
+ * @apiParam {String} password password of the user.
+ */
+auth.post('/rester-password', reset);
 
 module.exports = auth;

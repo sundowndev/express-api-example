@@ -9,21 +9,21 @@ module.exports = (req, res, next) => {
   const User = new UserModel({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
-    username: req.body.username,
+    email: req.body.email,
     password: passwordHash,
   });
 
-  UserModel.findOne({
-    username: req.body.username,
-  }, (err, user) => {
-    next({ status: 401, message: 'Username is already taken.' });
-  });
-
-  return User.save((saveErr) => {
-    if (saveErr) {
-      return next({ status: 500, message: 'Database error', error: [] });
+  UserModel.countDocuments({ email: req.body.email }, (err, c) => {
+    if (c !== 0) {
+      return next({ status: 401, message: 'Email is already taken by another user.' });
     }
 
-    return res.status(200).json(User);
+    return User.save((saveErr) => {
+      if (saveErr) {
+        return next({ status: 500, message: 'Database error', error: [saveErr] });
+      }
+
+      return res.status(201).json({ success: true, message: 'Success' });
+    });
   });
 };
