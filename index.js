@@ -14,9 +14,10 @@ app.use((err, req, res, next) => {
 });
 
 app.use((req, res) => {
-  res.status(404).json({ message: 'Resource not found.' });
+  res.status(404).json({ success: false, message: 'Resource not found.' });
 });
 
 // Start the server
 app.listen(port);
+
 console.log(`Server started on port ${port}`);
