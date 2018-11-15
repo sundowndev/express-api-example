@@ -22,7 +22,7 @@ Accept:application/json
 When signed in, you must provide the access token:
 
 ```
-Authorization: Bearer <Access_token>
+Authorization: <Access_token>
 ```
 
 ## API response
