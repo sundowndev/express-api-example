@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const UserSchema = require('../models/user');
-const NoteSchema = require('../models/note');
+const UserSchema = require.main.require('./app/models/user');
+const NoteSchema = require.main.require('./app/models/note');
 
 const db = require('./db.config');
 
