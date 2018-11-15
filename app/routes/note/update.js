@@ -1,28 +1,23 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
-// TODO: verify auth
-// TODO: verify owner
-
-module.exports = (req, res) => {
+module.exports = (req, res, next) => {
   const NoteModel = mongoose.model('Note');
 
-  NoteModel.findOneAndUpdate(
-    // the id of the item to find
-    { _id: req.params.id },
+  const { user } = jwt.decode(req.headers.authorization);
 
-    // the change to be made. Mongoose will smartly combine your existing
-    // document with this change, which allows for partial updates too
-    req.body,
+  NoteModel.findOne({ _id: req.params.id }, (err, note) => {
+    if (err) return next({ status: 500, error: [err] });
+    if (!note) return next({ status: 404, message: 'Note does not exists.' });
 
-    // an option that asks mongoose to return the updated version
-    // of the document instead of the pre-updated one.
-    { new: true },
+    if (note.user.toString() !== user.id) {
+      return next({ status: 403, message: 'Access forbidden.' });
+    }
 
-    // the callback function
-    (err, note) => {
-    // Handle any possible database errors
-      if (err) return res.status(500).send(err);
-      return res.json(note);
-    },
-  );
+    note.title = req.body.title || note.title;
+    note.text = req.body.text || note.text;
+    note.save();
+
+    return res.status(200).send(note);
+  });
 };

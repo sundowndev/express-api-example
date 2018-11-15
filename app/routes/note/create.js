@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
-// TODO: verify auth
-
-module.exports = (req, res) => {
+module.exports = (req, res, next) => {
   const NoteModel = mongoose.model('Note');
 
-  const Note = new NoteModel({ title: req.body.title, text: req.body.text });
+  const { user } = jwt.decode(req.headers.authorization);
+
+  const Note = new NoteModel({ title: req.body.title, text: req.body.text, user: user.id });
 
   Note.save((err) => {
     if (err) {
-      return res.status(400).json({ success: false, msg: 'Title and text must not be blank.' });
+      return next({ status: 400, error: [err] });
     }
 
-    return res.status(200).json(Note);
+    return res.status(201).json(Note);
   });
 };
