@@ -30,7 +30,7 @@ module.exports = (req, res, next) => {
         }, (QueryError, count) => {
           if (count !== 1) {
             return next({
-              status: 403,
+              status: 401,
               message: 'Your session is invalid. Please try sign in again.',
               error: [],
             });
