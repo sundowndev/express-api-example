@@ -7,7 +7,7 @@ const remove = require('./delete');
 
 const CreateValidation = require.main.require('./app/validation/note/create');
 const UpdateValidation = require.main.require('./app/validation/note/update');
-const Authentication = require.main.require('./app/validation/auth');
+const Authentication = require.main.require('./app/validation/auth/auth');
 
 /**
  * @api {get} /note/:id Get note
@@ -16,8 +16,8 @@ const Authentication = require.main.require('./app/validation/auth');
  *
  * @apiParam {String} id Note unique ID.
  *
- * @apiSuccess {string} title Title of the note.
- * @apiSuccess {string} text Text of the note.
+ * @apiSuccess {String} title Title of the note.
+ * @apiSuccess {String} text Text of the note.
  */
 note.get('/:id', Authentication, single);
 
@@ -30,8 +30,8 @@ note.get('/:id', Authentication, single);
  *       "Authorization": "<Access_Token>"
  *     }
  *
- * @apiSuccess {string} title Title of the note.
- * @apiSuccess {string} text Text of the note.
+ * @apiSuccess {String} title Title of the note.
+ * @apiSuccess {String} text Text of the note.
  */
 note.post('/', Authentication, CreateValidation, create);
 
@@ -42,8 +42,8 @@ note.post('/', Authentication, CreateValidation, create);
  *
  * @apiParam {String} id Note unique ID.
  *
- * @apiSuccess {string} title Title of the note.
- * @apiSuccess {string} text Text of the note.
+ * @apiSuccess {String} title Title of the note.
+ * @apiSuccess {String} text Text of the note.
  */
 note.put('/:id', Authentication, UpdateValidation, update);
 
