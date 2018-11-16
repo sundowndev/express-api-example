@@ -30,7 +30,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "access_token",
             "description": "<p>Access token.</p>"
@@ -149,14 +149,14 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "title",
             "description": "<p>Title of the note.</p>"
           },
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "text",
             "description": "<p>Text of the note.</p>"
@@ -233,14 +233,14 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "title",
             "description": "<p>Title of the note.</p>"
           },
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "text",
             "description": "<p>Text of the note.</p>"
@@ -276,14 +276,14 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "title",
             "description": "<p>Title of the note.</p>"
           },
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "text",
             "description": "<p>Text of the note.</p>"
@@ -301,6 +301,19 @@
     "title": "Delete account",
     "name": "DeleteUser",
     "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Password",
+            "description": "<p>Account password.</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "app/routes/user/index.js",
     "groupTitle": "User"
@@ -348,6 +361,7 @@
     "title": "Update account information",
     "name": "UpdateUser",
     "group": "User",
+    "description": "<p>Send only password and new_password to change the password. Otherwise they will be ignored.</p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -355,22 +369,36 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "Firstname",
-            "description": "<p>new firstname.</p>"
+            "field": "firstname",
+            "description": "<p>New firstname. (optional)</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "Lastname",
-            "description": "<p>new lastname.</p>"
+            "field": "lastname",
+            "description": "<p>New lastname. (optional)</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "Email",
-            "description": "<p>new email address.</p>"
+            "field": "email",
+            "description": "<p>New email address. (optional)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Actual password. (optional)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "new_password",
+            "description": "<p>New password (only if you passed password parameter).</p>"
           }
         ]
       }
