@@ -13,8 +13,8 @@ module.exports = (req, res, next) => {
     password: passwordHash,
   });
 
-  UserModel.countDocuments({ email: req.body.email }, (err, c) => {
-    if (c !== 0) {
+  UserModel.countDocuments({ email: req.body.email }, (err, count) => {
+    if (count !== 0) {
       return next({
         status: 401,
         message: 'Email is already taken by another user.',

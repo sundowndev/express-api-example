@@ -31,7 +31,7 @@ module.exports = (req, res, next) => {
         const token = jwt.sign({
           user: dataUser,
         }, secret, {
-          expiresIn: '12h',
+          expiresIn: '3h',
         });
 
         // return the information including token as JSON
