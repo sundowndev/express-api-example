@@ -9,12 +9,6 @@ module.exports = (req, res, next) => {
   return UserModel.findById(user.id, 'id firstname lastname email')
     .lean()
     .exec()
-    .then((result) => {
-      if (result === null) {
-        return next({ status: 401, message: 'User does not exists.' });
-      }
-
-      return res.status(200).json(result);
-    })
+    .then(result => res.status(200).json(result))
     .catch(() => next({ status: 401, message: 'User does not exists.' }));
 };
