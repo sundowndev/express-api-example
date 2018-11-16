@@ -26,7 +26,15 @@ module.exports = (req, res, next) => {
         return bcrypt.hash(req.body.new_password, null, null, (hashErr, hash) => {
           userObj.password = hash;
 
-          return userObj.save(() => res.status(200).json(userObj));
+          const response = {
+            _id: userObj._id,
+            firstname: userObj.firstname,
+            lastname: userObj.lastname,
+            email: userObj.email,
+            createdAt: userObj.createdAt,
+          };
+
+          return userObj.save(() => res.status(200).json(response));
         });
       });
     } else {
@@ -34,7 +42,15 @@ module.exports = (req, res, next) => {
       userObj.lastname = req.body.lastname || userObj.lastname;
       userObj.email = req.body.email || userObj.email;
 
-      return userObj.save(() => res.status(200).json(userObj));
+      const response = {
+        _id: userObj._id,
+        firstname: userObj.firstname,
+        lastname: userObj.lastname,
+        email: userObj.email,
+        createdAt: userObj.createdAt,
+      };
+
+      return userObj.save(() => res.status(200).json(response));
     }
   });
 };
