@@ -12,27 +12,22 @@ module.exports = (req, res, next) => {
       return next({ status: 401, message: 'User does not exists.' });
     }
 
-    if (req.body.password) {
+    if (req.body.password && req.body.new_password) {
       bcrypt.compare(req.body.password, user.password, (error, result) => {
         if (!result || error) {
           return next(
             {
               status: 401,
               message: 'Authentication failed. Wrong password.',
-            }
+            },
           );
         }
 
-        if (req.body.password === req.body.new_password) {
-          return next(
-            {
-              status: 401,
-              message: 'New password must be different than old password.',
-            }
-          );
-        }
+        return bcrypt.hash(req.body.new_password, null, null, (hashErr, hash) => {
+          userObj.password = hash;
 
-        userObj.password = bcrypt.hashSync(req.body.new_password);
+          return userObj.save(() => res.status(200).json(userObj));
+        });
       });
     } else {
       userObj.firstname = req.body.firstname || userObj.firstname;

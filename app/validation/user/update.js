@@ -28,6 +28,15 @@ module.exports = (req, res, next) => {
       });
     }
 
+    /*if (req.body.password && req.body.password === req.body.new_password) {
+      return next(
+        {
+          status: 401,
+          message: 'New password must be different than old password.',
+        },
+      );
+    }*/
+
     return next();
   });
 };
