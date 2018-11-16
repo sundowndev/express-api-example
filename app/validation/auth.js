@@ -16,7 +16,7 @@ module.exports = (req, res, next) => {
       return next({ status: 401, error: validateErr.details });
     }
 
-    return jwt.verify(req.headers.authorization, secret, (err, decoded) => {
+    return jwt.verify(req.headers.authorization, secret, (err) => {
       if (err) {
         return next({ status: 401, message: 'Token error.', error: [err] });
       }

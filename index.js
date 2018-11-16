@@ -10,7 +10,11 @@ const port = process.env.PORT || 8080; // set our port
 app.use('/', routes);
 
 app.use((err, req, res, next) => {
-  res.status(err.status || 400).json({ success: false, message: err.message || 'An error occured.', errors: err.error || [] });
+  res.status(err.status || 400).json({
+    success: false,
+    message: err.message || 'An error occured.',
+    errors: err.error || [],
+  });
 });
 
 app.use((req, res) => {

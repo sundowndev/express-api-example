@@ -58,7 +58,7 @@ note.put('/:id', Authentication, UpdateValidation, update);
  *       "message": "Note successfully deleted."
  *     }
  * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 403 Not Found
+ *     HTTP/1.1 403 Forbidden
  *     {
  *       "success": false,
  *       "message": "Access forbidden.",

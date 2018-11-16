@@ -22,10 +22,13 @@ user.get('/me', Authentication, profile);
   * @api {put} /user/me Update account information
   * @apiName UpdateUser
   * @apiGroup User
+  * @apiDescription Send only password and new_password to change the password. Otherwise they will be ignored.
   *
-  * @apiParam {String} Firstname new firstname.
-  * @apiParam {String} Lastname new lastname.
-  * @apiParam {String} Email new email address.
+  * @apiParam {String} Firstname New firstname.
+  * @apiParam {String} Lastname New lastname.
+  * @apiParam {String} Email New email address.
+  * @apiParam {String} Password Actual password.
+  * @apiParam {String} Password New password.
   *
   * @apiSuccess {Object} user User object.
   */

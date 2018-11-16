@@ -10,7 +10,11 @@ const UserSchema = new Schema({
     type: String, required: [true, "can't be blank"],
   },
   email: {
-    type: String, lowercase: true, unique: true, required: [true, "can't be blank"], index: true,
+    type: String,
+    lowercase: true,
+    unique: true,
+    required: [true, "can't be blank"],
+    index: true,
   },
   password: {
     type: String, required: [true, "can't be blank"],

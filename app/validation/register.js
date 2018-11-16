@@ -16,7 +16,11 @@ module.exports = (req, res, next) => {
   },
   schema, (validateErr) => {
     if (validateErr) {
-      return next({ status: 400, message: 'Form is invalid.', error: validateErr.details });
+      return next({
+        status: 400,
+        message: 'Form is invalid.',
+        error: validateErr.details,
+      });
     }
 
     return next();
