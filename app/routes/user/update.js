@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
     }
 
     if (req.body.password && req.body.new_password) {
-      bcrypt.compare(req.body.password, user.password, (error, result) => {
+      bcrypt.compare(req.body.password, userObj.password, (error, result) => {
         if (!result || error) {
           return next(
             {
@@ -33,8 +33,8 @@ module.exports = (req, res, next) => {
       userObj.firstname = req.body.firstname || userObj.firstname;
       userObj.lastname = req.body.lastname || userObj.lastname;
       userObj.email = req.body.email || userObj.email;
-    }
 
-    return userObj.save(() => res.status(200).json(userObj));
+      return userObj.save(() => res.status(200).json(userObj));
+    }
   });
 };
