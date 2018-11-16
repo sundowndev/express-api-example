@@ -12,8 +12,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "username",
-            "description": "<p>username of the user.</p>"
+            "field": "email",
+            "description": "<p>email of the user.</p>"
           },
           {
             "group": "Parameter",
@@ -69,8 +69,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "username",
-            "description": "<p>username of the user.</p>"
+            "field": "email",
+            "description": "<p>email of the user.</p>"
           },
           {
             "group": "Parameter",
@@ -91,6 +91,36 @@
             "optional": false,
             "field": "Array",
             "description": "<p>Array of Note objects.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/auth/index.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
+    "url": "/auth/reset-password",
+    "title": "Reset password",
+    "name": "ResetPass",
+    "group": "Auth",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the user.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>password of the user.</p>"
           }
         ]
       }
@@ -157,7 +187,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 403 Not Found\n{\n  \"success\": false,\n  \"message\": \"Access forbidden.\",\n  \"errors\": []\n}",
+          "content": "HTTP/1.1 403 Forbidden\n{\n  \"success\": false,\n  \"message\": \"Access forbidden.\",\n  \"errors\": []\n}",
           "type": "json"
         }
       ]
@@ -278,7 +308,7 @@
   {
     "type": "get",
     "url": "/user/me",
-    "title": "Get user information",
+    "title": "Get account information",
     "name": "GetUser",
     "group": "User",
     "success": {
@@ -318,6 +348,33 @@
     "title": "Update account information",
     "name": "UpdateUser",
     "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Firstname",
+            "description": "<p>new firstname.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Lastname",
+            "description": "<p>new lastname.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Email",
+            "description": "<p>new email address.</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
