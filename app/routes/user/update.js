@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
     }
 
     if (req.body.password && req.body.new_password) {
-      bcrypt.compare(req.body.password, userObj.password, (error, result) => {
+      return bcrypt.compare(req.body.password, userObj.password, (error, result) => {
         if (!result || error) {
           return next(
             {
@@ -37,20 +37,20 @@ module.exports = (req, res, next) => {
           return userObj.save(() => res.status(200).json(response));
         });
       });
-    } else {
-      userObj.firstname = req.body.firstname || userObj.firstname;
-      userObj.lastname = req.body.lastname || userObj.lastname;
-      userObj.email = req.body.email || userObj.email;
-
-      const response = {
-        _id: userObj._id,
-        firstname: userObj.firstname,
-        lastname: userObj.lastname,
-        email: userObj.email,
-        createdAt: userObj.createdAt,
-      };
-
-      return userObj.save(() => res.status(200).json(response));
     }
+
+    userObj.firstname = req.body.firstname || userObj.firstname;
+    userObj.lastname = req.body.lastname || userObj.lastname;
+    userObj.email = req.body.email || userObj.email;
+
+    const response = {
+      _id: userObj._id,
+      firstname: userObj.firstname,
+      lastname: userObj.lastname,
+      email: userObj.email,
+      createdAt: userObj.createdAt,
+    };
+
+    return userObj.save(() => res.status(200).json(response));
   });
 };
