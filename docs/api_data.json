@@ -308,7 +308,7 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "Password",
+            "field": "password",
             "description": "<p>Account password.</p>"
           }
         ]
@@ -327,6 +327,13 @@
     "success": {
       "fields": {
         "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Unique ID of the User.</p>"
+          },
           {
             "group": "Success 200",
             "type": "String",
@@ -408,10 +415,31 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "String",
             "optional": false,
-            "field": "user",
-            "description": "<p>User object.</p>"
+            "field": "id",
+            "description": "<p>Unique ID of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "firstname",
+            "description": "<p>Firstname of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "lastname",
+            "description": "<p>Lastname of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email of the User.</p>"
           }
         ]
       }
