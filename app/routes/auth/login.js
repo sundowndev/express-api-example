@@ -13,7 +13,10 @@ module.exports = (req, res, next) => {
     if (err) throw err;
 
     if (!user) {
-      return next({ status: 400, message: 'Authentication failed. User not found.' });
+      return next({
+        status: 400,
+        message: 'Authentication failed. User not found.',
+      });
     }
 
     // check if password matches
@@ -25,7 +28,11 @@ module.exports = (req, res, next) => {
           email: user.email,
         };
 
-        const token = jwt.sign({ user: dataUser }, secret, { expiresIn: '12h' });
+        const token = jwt.sign({
+          user: dataUser,
+        }, secret, {
+          expiresIn: '3h',
+        });
 
         // return the information including token as JSON
         return res.json({
@@ -40,7 +47,10 @@ module.exports = (req, res, next) => {
         });
       }
 
-      return next({ status: 401, message: 'Authentication failed. Wrong password.' });
+      return next({
+        status: 401,
+        message: 'Authentication failed. Wrong password.',
+      });
     });
   });
 };

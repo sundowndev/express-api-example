@@ -6,7 +6,11 @@ module.exports = (req, res, next) => {
 
   const { user } = jwt.decode(req.headers.authorization);
 
-  const Note = new NoteModel({ title: req.body.title, text: req.body.text, user: user.id });
+  const Note = new NoteModel({
+    title: req.body.title,
+    text: req.body.text,
+    user: user.id,
+  });
 
   Note.save((err) => {
     if (err) {

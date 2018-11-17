@@ -4,8 +4,8 @@ const register = require('./register');
 const login = require('./login');
 const reset = require('./reset');
 
-const RegisterValidation = require.main.require('./app/validation/register');
-const LoginValidation = require.main.require('./app/validation/login');
+const RegisterValidation = require.main.require('./app/validation/auth/register');
+const LoginValidation = require.main.require('./app/validation/auth/login');
 
 /**
  * @api {post} /auth/register Register
@@ -29,7 +29,7 @@ auth.post('/register', RegisterValidation, register);
  * @apiParam {String} email email of the user.
  * @apiParam {String} password password of the user.
  *
- * @apiSuccess {string} access_token Access token.
+ * @apiSuccess {String} access_token Access token.
  */
 auth.post('/login', LoginValidation, login);
 

@@ -12,8 +12,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "username",
-            "description": "<p>username of the user.</p>"
+            "field": "email",
+            "description": "<p>email of the user.</p>"
           },
           {
             "group": "Parameter",
@@ -30,7 +30,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "access_token",
             "description": "<p>Access token.</p>"
@@ -69,8 +69,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "username",
-            "description": "<p>username of the user.</p>"
+            "field": "email",
+            "description": "<p>email of the user.</p>"
           },
           {
             "group": "Parameter",
@@ -101,6 +101,36 @@
   },
   {
     "type": "post",
+    "url": "/auth/reset-password",
+    "title": "Reset password",
+    "name": "ResetPass",
+    "group": "Auth",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the user.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>password of the user.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/auth/index.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
     "url": "/note",
     "title": "Create note",
     "name": "CreateNote",
@@ -119,14 +149,14 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "title",
             "description": "<p>Title of the note.</p>"
           },
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "text",
             "description": "<p>Text of the note.</p>"
@@ -157,7 +187,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 403 Not Found\n{\n  \"success\": false,\n  \"message\": \"Access forbidden.\",\n  \"errors\": []\n}",
+          "content": "HTTP/1.1 403 Forbidden\n{\n  \"success\": false,\n  \"message\": \"Access forbidden.\",\n  \"errors\": []\n}",
           "type": "json"
         }
       ]
@@ -203,14 +233,14 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "title",
             "description": "<p>Title of the note.</p>"
           },
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "text",
             "description": "<p>Text of the note.</p>"
@@ -246,14 +276,14 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "title",
             "description": "<p>Title of the note.</p>"
           },
           {
             "group": "Success 200",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "text",
             "description": "<p>Text of the note.</p>"
@@ -271,6 +301,19 @@
     "title": "Delete account",
     "name": "DeleteUser",
     "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Account password.</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "app/routes/user/index.js",
     "groupTitle": "User"
@@ -278,12 +321,19 @@
   {
     "type": "get",
     "url": "/user/me",
-    "title": "Get user information",
+    "title": "Get account information",
     "name": "GetUser",
     "group": "User",
     "success": {
       "fields": {
         "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Unique ID of the User.</p>"
+          },
           {
             "group": "Success 200",
             "type": "String",
@@ -318,15 +368,78 @@
     "title": "Update account information",
     "name": "UpdateUser",
     "group": "User",
+    "description": "<p>Send only password and new_password to change the password. Otherwise they will be ignored.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "firstname",
+            "description": "<p>New firstname. (optional)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "lastname",
+            "description": "<p>New lastname. (optional)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>New email address. (optional)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Actual password. (optional)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "new_password",
+            "description": "<p>New password (only if you passed password parameter).</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "String",
             "optional": false,
-            "field": "user",
-            "description": "<p>User object.</p>"
+            "field": "id",
+            "description": "<p>Unique ID of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "firstname",
+            "description": "<p>Firstname of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "lastname",
+            "description": "<p>Lastname of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email of the User.</p>"
           }
         ]
       }
